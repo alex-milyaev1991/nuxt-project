@@ -1,0 +1,46 @@
+@use 'sass:math';
+@import './mixins';
+
+$fontSize: var(--font-size);
+$lineHeight: 150%; /* 24/16 */
+$fontFamily: 'Poppins';
+
+// Variables ==============================================================================================================================================================================================================================================================================
+$mainColor: var(--main-color);
+
+$accent: var(--accent);
+$accent_light: var(--accent-light);
+
+$grey: var(--grey);
+$grey_light: var(--grey-light);
+
+$parchment_cream: var(--parchment-cream);
+
+$white: var(--white);
+$yellow: var(--yellow);
+$green_dark: var(--green-dark);
+$pink: var(--pink);
+$red: var(--red);
+
+$box_shadow: 0 toRem(2) toRem(7.7) 0 var(--box-shadow-color);
+$radius: toRem(12);
+$transition: 0.2s ease;
+
+$zIndex_1: 1;
+$zIndex_5: 5;
+$zIndex_50: 50;
+
+$header_height: var(--header-height);
+
+// Settings ===============================================================================================================================================================================================================================================================================================
+$minWidth: 320;
+$maxWidth: 1920;
+$maxWidthContainer: 1448;
+$paddingContainer: var(--padding-сontainer);
+$paddingContainerMinus: var(--padding-сontainer-minus);
+
+// Media
+$pc: em(1199.98);
+$tablet: em(991.98);
+$mobile: em(767.98);
+$mobileSmall: em(479.98);

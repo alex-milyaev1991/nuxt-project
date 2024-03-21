@@ -1,0 +1,111 @@
+@function math-div($a, $b) {
+  @return $a / $b;
+}
+
+//Percent
+@function percent($px, $from) {
+  $result: math-div($px, $from) * 100%;
+  @return $result;
+}
+//toRem
+@function toRem($px) {
+  $result: math-div($px, 16) + rem;
+  @return $result;
+}
+//EM
+@function em($px, $current: 16) {
+  $result: math-div($px, $current) + em;
+  @return $result;
+}
+// Row Flex
+@mixin flexRow($align: initial, $justify: initial) {
+  display: flex;
+  flex-direction: row;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+// Column Flex
+@mixin flexColumn($align: initial, $justify: initial) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+// Adaptive property (clamp)
+@mixin adaptiveValue(
+  $property,
+  $startSize,
+  $minSize,
+  $widthFrom: $containerWidth,
+  $widthTo: $minWidth,
+  $keepSize: 0
+) {
+  @if ($startSize==0) {
+    $startSize: 0.000001;
+  }
+  @if ($minSize==0) {
+    $minSize: 0.000001;
+  }
+
+  // for calc();
+  $addSize: math-div($startSize - $minSize, 16);
+
+  @if ($maxWidthContainer == 0) {
+    $widthFrom: $maxWidth;
+  }
+
+  // Media in EM
+  $widthFromMedia: em($widthFrom);
+  $widthToMedia: em($widthTo);
+
+  // Float formula
+  $slope: math-div(($startSize - $minSize), ($widthFrom - $widthTo));
+  $yIntersection: -$widthTo * $slope + $minSize;
+  @if ($yIntersection==0) {
+    $yIntersection: 0.000001;
+  }
+  $flyValue: #{toRem($yIntersection)}' + ' #{$slope * 100}vw;
+
+  // Get the property value
+  $propertyValue: #{'clamp(' toRem($minSize) ',' $flyValue ',' toRem($startSize)
+    ')'};
+  // If negative values
+  @if ($minSize > $startSize) {
+    $propertyValue: #{'clamp('
+      toRem($startSize)
+      ','
+      $flyValue
+      ','
+      toRem($minSize)
+      ')'};
+  }
+
+  // If clamp() is supported;
+  @supports (#{$property}: $propertyValue) {
+    #{$property}: $propertyValue;
+  }
+
+  // If clamp() is not supported;
+  @supports not (#{$property}: $propertyValue) {
+    #{$property}: calc(
+      #{toRem($minSize)} + #{$addSize} * (100vw - #{toRem($widthTo)}) / #{math-div(
+          $widthFrom,
+          16
+        ) - math-div($widthTo, 16)}
+    );
+  }
+
+  // Set default values
+  @if $widthFrom != $maxWidth and $keepSize != 1 and $keepSize != 2 {
+    @media (min-width: $widthFromMedia) {
+      #{$property}: inherit;
+    }
+  }
+  @if $widthTo != $minWidth and $keepSize != 1 and $keepSize != 3 {
+    @media (max-width: $widthToMedia) {
+      #{$property}: inherit;
+    }
+  }
+}

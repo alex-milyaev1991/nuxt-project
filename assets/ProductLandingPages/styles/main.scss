@@ -1,0 +1,105 @@
+@import './root';
+@import './variables';
+@import './null';
+@import './swiper';
+
+html {
+  scroll-behavior: smooth;
+  overflow: initial;
+  -webkit-tap-highlight-color: initial;
+}
+
+::-webkit-scrollbar {
+  width: toRem(3);
+  height: toRem(3);
+
+  &-thumb {
+    background-color: $accent;
+    border-radius: $radius;
+    border: none;
+  }
+
+  &-track {
+    background-color: $grey;
+  }
+}
+
+::selection {
+  background-color: #c1df16a7;
+}
+
+section {
+  padding-top: toRem(124);
+
+  @media (max-width: $mobile) {
+    padding-top: toRem(74);
+  }
+}
+
+// Typography ======================================================================================================================================================================================================================
+h1 {
+  @include adaptiveValue('font-size', 62, 24, 991, 375, 1);
+  font-weight: 300;
+  line-height: 150%; /* 90/60 */
+}
+
+h2 {
+  @include adaptiveValue('font-size', 52, 24, 991, 375, 1);
+  line-height: 150%; /* 60/40 */
+}
+
+h3 {
+  @include adaptiveValue('font-size', 42, 18, 991, 375, 1);
+  line-height: 150%; /* 60/40 */
+}
+
+h4 {
+  @include adaptiveValue('font-size', 36, 28, 991, 375, 1);
+  line-height: 150%; /* 54/36 */
+}
+
+.main-subtitle {
+  margin-top: toRem(16);
+  font-size: toRem(16);
+
+  @media (max-width: $mobile) {
+    font-size: toRem(12);
+  }
+}
+
+.text {
+  &_subtitle {
+    font-size: toRem(16);
+    font-weight: 400;
+    margin-top: toRem(12);
+  }
+
+  &_accent {
+    color: $accent;
+  }
+}
+
+// Media ======================================================================================================================================================================================================================
+.isTablet {
+  @media (min-width: $tablet) {
+    display: none !important;
+  }
+}
+
+.isNotTablet {
+  @media (max-width: $tablet) {
+    display: none !important;
+  }
+}
+
+.isMobile {
+  @media (min-width: $mobile) {
+    display: none !important;
+  }
+}
+
+.isNotMobile {
+  @media (max-width: $mobile) {
+    display: none !important;
+  }
+}

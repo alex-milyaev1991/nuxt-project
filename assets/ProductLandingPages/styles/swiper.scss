@@ -1,0 +1,35 @@
+.swiper {
+  overflow: hidden;
+}
+.swiper-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: content-box !important;
+  display: flex !important;
+  position: relative !important;
+}
+.swiper-vertical {
+  .swiper-wrapper {
+    flex-direction: column !important;
+  }
+}
+.swiper-autoheight {
+  .swiper-wrapper {
+    align-items: flex-start !important;
+  }
+}
+.swiper-initialized {
+  .swiper-slide {
+    flex-shrink: 0 !important;
+    // transition-property: transform ;
+  }
+}
+.swiper-android {
+  .swiper-slide,
+  .swiper-wrapper {
+    transform: translate3d(0px, 0, 0) !important;
+  }
+}
+.swiper-button-lock {
+  display: none !important;
+}

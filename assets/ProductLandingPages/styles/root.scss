@@ -1,0 +1,30 @@
+@import './variables';
+
+:root {
+  --font-size: 16px;
+  --main-color: #2e2930;
+
+  --accent: #c0df16;
+  --accent-light: #e5f1b8;
+
+  --white: #fff;
+  --grey: #d6d6d6;
+  --grey-light: #efefef;
+  --parchment-cream: #f6f5ef;
+  --yellow: #fec600;
+  --green-dark: #c0df163b;
+  --pink: #dda6ce;
+  --red: #c8102e;
+
+  --box-shadow-color: #83838340;
+  --header-height: 60px;
+  --padding-сontainer-minus: -44px;
+  --padding-сontainer: 44px;
+
+  @media (max-width: $mobile) {
+    --font-size: 14px;
+    --header-height: 51px;
+    --padding-сontainer-minus: -24px;
+    --padding-сontainer: 24px;
+  }
+}
